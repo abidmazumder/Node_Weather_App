@@ -7,19 +7,17 @@ const forecast = () => {
   } else {
     output1.textContent = 'Loading....';
     output2.textContent = '';
-    fetch(`http://localhost:3000/weather?address=${address.value}`).then(
-      (response) => {
-        response.json().then((data) => {
-          if (data.error) {
-            output1.innerHTML = data.error;
-          } else {
-            //  const area = `${data.location} , ${}`;
-            address.value = '';
-            output1.innerHTML = `${data.location}`;
-            output2.innerHTML = `${data.forcastData}`;
-          }
-        });
-      }
-    );
+    fetch(`/weather?address=${address.value}`).then((response) => {
+      response.json().then((data) => {
+        if (data.error) {
+          output1.innerHTML = data.error;
+        } else {
+          //  const area = `${data.location} , ${}`;
+          address.value = '';
+          output1.innerHTML = `${data.location}`;
+          output2.innerHTML = `${data.forcastData}`;
+        }
+      });
+    });
   }
 };
