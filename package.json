@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "dev:": "nodemon src/index.js -e js,hbs"
   },
   "author": "Abid",
   "license": "ISC",
@@ -13,7 +14,9 @@
     "bootstrap": "^5.2.0",
     "express": "^4.18.1",
     "hbs": "^4.2.0",
-    "nodemon": "^2.0.19",
     "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
