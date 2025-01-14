@@ -1,19 +1,21 @@
 const request = require('request');
 const geoCode = (adress, callback) => {
-  const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
+  const url = `https://api.positionstack.com/v1/forward?access_key=dc6a574c7180cdf17c9c992c643695af&query=${encodeURIComponent(
     adress
-  )}.json?access_token=pk.eyJ1IjoibXVzdGFraW1rciIsImEiOiJjbDZhdnRpb2wwMTN1M2lzNmhpaWZvNzYwIn0.0bg4CRRjTzQrBa38bWqXSg&limit=1`;
+  )}`;
+
+  console.log(url);
 
   request({ url, json: true }, (error, { body }) => {
     if (error) {
       callback('Unable to Connect Location Service', 0);
-    } else if (body.features.length === 0) {
+    } else if (body.data.length === 0) {
       callback('Invalid Location', 0);
     } else {
       callback(undefined, {
-        latitude: body.features[0].center[1],
-        longitude: body.features[0].center[0],
-        location: body.features[0].place_name,
+        latitude: body.data[0].latitude,
+        longitude: body.data[0].longitude,
+        location: body.data[0].name,
       });
     }
   });
